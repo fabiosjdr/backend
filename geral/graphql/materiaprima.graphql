@@ -1,0 +1,38 @@
+extend type Query{
+   materiaprima(INT_MAT:ID @eq, DESC_MAT: String @where(operator: "like")): [CadastroMateriaPrima] @all
+   materiasprimas(INT_MAT: ID @eq, DESC_MAT: String @eq ) : CadastroMateriaPrima @find
+}
+
+extend type Mutation{
+
+  deleteMateriaPrima(INT_MAT: ID! @whereKey) : CadastroMateriaPrima @delete @guard
+
+  createMateriaPrima(
+                      DESC_MAT: String!,
+                      DESC_MAT_ENG: String,
+                    ) : CadastroMateriaPrima! @create @guard
+
+
+  updateMateriaPrima(
+                      INT_MAT: ID!,
+                      DESC_MAT: String,
+                      DESC_MAT_ENG: String,
+                    ) : CadastroMateriaPrima! @update @guard
+
+
+  upsertMateriaPrima(
+                      INT_MAT: ID!,
+                      DESC_MAT: String!,
+                      DESC_MAT_ENG: String,
+                    ) : CadastroMateriaPrima! @upsert @guard
+}
+
+type CadastroMateriaPrima{
+  
+  INT_MAT: ID
+  DESC_MAT: String!,
+  DESC_MAT_ENG: String,
+  
+}
+
+

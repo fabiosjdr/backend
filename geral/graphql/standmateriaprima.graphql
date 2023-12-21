@@ -1,0 +1,38 @@
+extend type Query{
+   standtemmateriasprimas(INT_STAND_MAT:ID @eq, INT_MAT: Int @where(operator: "="), INT_STAND: Int @where(operator: "=")): [CadastroStandTemMateriaPrima!]! @all 
+   standtemmateriaprima(INT_STAND_MAT: ID @eq ) : CadastroStandTemMateriaPrima @find 
+}
+
+extend type Mutation{
+
+  deleteStandTemMateriaPrima(INT_STAND_MAT: ID! @whereKey) : CadastroStandTemMateriaPrima @delete @guard
+
+  createStandTemMateriaPrima(
+                              INT_STAND: Int!,
+                              INT_MAT: Int!
+                            ) : CadastroStandTemMateriaPrima! @create @guard
+
+
+  updateStandTemMateriaPrima(
+                              INT_STAND_MAT: ID!,
+                              INT_STAND: Int,
+                              INT_MAT: Int
+                            ) : CadastroStandTemMateriaPrima! @update @guard
+
+
+  upsertStandTemMateriaPrima(
+                              INT_STAND_MAT: ID!,
+                              INT_STAND: Int!,
+                              INT_MAT: Int!,
+                            ) : CadastroStandTemMateriaPrima! @upsert @guard
+}
+
+type CadastroStandTemMateriaPrima{
+  
+  INT_STAND_MAT: ID!
+  INT_MAT: Int!,
+  INT_STAND: Int!
+  
+}
+
+

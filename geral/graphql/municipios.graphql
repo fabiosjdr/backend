@@ -1,0 +1,15 @@
+extend type Query{
+   municipios(INT_MUN:ID @eq, INT_EST: ID @where(operator: "="), NM_MUN: String @where(operator: "like")): [Municipio] @all
+   municipio(INT_MUN: ID @eq, NM_MUN: String @eq ) : Municipio @find
+}
+
+
+type Municipio{
+  
+  INT_MUN: ID!
+  NM_MUN: String!
+  ESTADO: Estado! @belongsTo,
+  
+}
+
+

@@ -1,0 +1,688 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SH3 API Laravel",
+        "description": "SH3 - API de serviços independentes",
+        "contact": {
+            "name": "SH3 Suporte",
+            "email": "suporte@sh3.com.br"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:{porta}/api/",
+            "description": "Servidor de desenvolvimento",
+            "variables": {
+                "porta": {
+                    "enum": [
+                        "8000",
+                        "8001"
+                    ],
+                    "default": "8000"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/geral/credor/": {
+            "get": {
+                "tags": [
+                    "credor"
+                ],
+                "summary": "Listar credor",
+                "operationId": "listarCredors",
+                "responses": {
+                    "200": {
+                        "description": "Lista de credor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CadastroCredor"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "credor"
+                ],
+                "summary": "Inserir credor",
+                "operationId": "inserirCredors",
+                "requestBody": {
+                    "description": "Informar dados do credor",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroCredor"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Credor criado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/geral/credor/{id}": {
+            "put": {
+                "tags": [
+                    "credor"
+                ],
+                "summary": "Atualizar credor",
+                "operationId": "updateCredors",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do endereço",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Informar dados do credor",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroCredor"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Credor editado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/geral/endereco/": {
+            "get": {
+                "tags": [
+                    "endereco"
+                ],
+                "summary": "Listar enderecos",
+                "operationId": "listarEnderecos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de enderecos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CadastroEndereco"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "endereco"
+                ],
+                "summary": "Inserir endereco",
+                "operationId": "inserirEnderecos",
+                "requestBody": {
+                    "description": "Informar dados do endereco",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroEndereco"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Endereco criado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/geral/endereco/{id}": {
+            "put": {
+                "tags": [
+                    "endereco"
+                ],
+                "summary": "Atualizar endereco",
+                "operationId": "updateEnderecos",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do endereço",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Informar dados do endereco",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroEndereco"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Endereco editado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/geral/municipio/": {
+            "get": {
+                "tags": [
+                    "municipio"
+                ],
+                "summary": "Listar municipios",
+                "operationId": "listarMunicipios",
+                "responses": {
+                    "200": {
+                        "description": "Lista de municipios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CadastroMunicipio"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "municipio"
+                ],
+                "summary": "Inserir municipio",
+                "operationId": "inserirMunicipios",
+                "requestBody": {
+                    "description": "Informar dados do municipio",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroMunicipio"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Municipio criado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/compras/permissoes/": {
+            "get": {
+                "tags": [
+                    "permissoes"
+                ],
+                "summary": "Listar permissoess",
+                "operationId": "listarpermissoes",
+                "responses": {
+                    "200": {
+                        "description": "Lista de permissoess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CadastroPermissoes"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "permissoes"
+                ],
+                "summary": "Inserir permissoes",
+                "operationId": "inserirpermissoes",
+                "requestBody": {
+                    "description": "Informar dados do permissoes",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroPermissoes"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Permissoes criado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/geral/pessoa/": {
+            "get": {
+                "tags": [
+                    "pessoa"
+                ],
+                "summary": "Listar pessoas",
+                "operationId": "listarpessoa",
+                "responses": {
+                    "200": {
+                        "description": "Lista de pessoas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CadastroPessoa"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "pessoa"
+                ],
+                "summary": "Inserir pessoa",
+                "operationId": "inserirpessoa",
+                "requestBody": {
+                    "description": "Informar dados do pessoa",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroPessoa"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pessoa criado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/geral/pessoa/completo": {
+            "post": {
+                "tags": [
+                    "pessoa"
+                ],
+                "summary": "Inserir pessoa completa",
+                "operationId": "inserirPessoaCompleta",
+                "requestBody": {
+                    "description": "Informar dados do pessoa",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroPessoa"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pessoa criado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        },
+        "/compras/texto/": {
+            "get": {
+                "tags": [
+                    "texto"
+                ],
+                "summary": "Listar textos",
+                "operationId": "listartexto",
+                "responses": {
+                    "200": {
+                        "description": "Lista de textos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CadastroTexto"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "texto"
+                ],
+                "summary": "Inserir texto",
+                "operationId": "inserirtexto",
+                "requestBody": {
+                    "description": "Informar dados do texto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CadastroTexto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Texto criado com sucesso"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnexpectedError"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CadastroCredor": {
+                "title": "CREDOR",
+                "required": [
+                    "INT_CRED"
+                ],
+                "properties": {
+                    "INT_CRED": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "INT_NUM_REG": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "CadastroEndereco": {
+                "title": "ENDERECO",
+                "required": [
+                    "INT_MUN"
+                ],
+                "properties": {
+                    "INT_END": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "INT_MUN": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "CadastroLogin": {
+                "title": "MUNICIPIO",
+                "required": [
+                    "NM_MUN",
+                    "INT_IBGE"
+                ],
+                "properties": {
+                    "INT_MUN": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "NM_MUN": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Teste"
+                    },
+                    "INT_IBGE": {
+                        "type": "integer",
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            },
+            "CadastroMunicipio": {
+                "title": "MUNICIPIO",
+                "required": [
+                    "NM_MUN",
+                    "INT_IBGE"
+                ],
+                "properties": {
+                    "INT_MUN": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "NM_MUN": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Teste"
+                    },
+                    "INT_IBGE": {
+                        "type": "integer",
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            },
+            "CadastroPermissoes": {
+                "title": "PESSOA",
+                "required": [
+                    "NM_PES"
+                ],
+                "properties": {
+                    "INT_PES": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "NM_PES": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Teste"
+                    }
+                },
+                "type": "object"
+            },
+            "CadastroPessoa": {
+                "title": "PESSOA",
+                "required": [
+                    "NM_PES"
+                ],
+                "properties": {
+                    "INT_PES": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "NM_PES": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Teste"
+                    }
+                },
+                "type": "object"
+            },
+            "CadastroTexto": {
+                "title": "CP_TEXTO",
+                "required": [
+                    "NM_SECR"
+                ],
+                "properties": {
+                    "INT_SECR": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "NM_SECR": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Teste"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "UnauthorizedError": {
+                "description": "Token de acesso não encontrado ou inválido",
+                "content": {
+                    "application/json": {
+                        "example": {
+                            "status": "error",
+                            "message": "Token not found."
+                        }
+                    }
+                }
+            },
+            "UnexpectedError": {
+                "description": "Erro inesperado",
+                "content": {
+                    "application/json": {
+                        "example": {
+                            "status": "error",
+                            "message": "An exception occurred while executing a query: [...]"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "JWT": {
+                "type": "http",
+                "name": "JWT",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "credor",
+            "description": "Credor"
+        },
+        {
+            "name": "endereco",
+            "description": "Endereço"
+        },
+        {
+            "name": "municipio",
+            "description": "Município"
+        },
+        {
+            "name": "municipio",
+            "description": "Município"
+        },
+        {
+            "name": "pessoa",
+            "description": "Pessoa"
+        },
+        {
+            "name": "pessoa",
+            "description": "Pessoa"
+        },
+        {
+            "name": "texto",
+            "description": "Texto"
+        }
+    ]
+}

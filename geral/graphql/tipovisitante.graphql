@@ -1,0 +1,33 @@
+extend type Query{
+   tiposvisitantes(INT_TP_VS:ID @eq, DESC_TP_VS: String @where(operator: "like")): [CadastroTipoVisitante] @paginate 
+   tipovisitante(INT_TP_VS: ID @eq, DESC_TP_VS: String @eq ) : CadastroTipoVisitante @find 
+}
+
+extend type Mutation{
+
+  deleteTipoVisitante(INT_TP_VS: ID! @whereKey) : User @delete @guard
+
+  createTipoVisitante(
+                DESC_TP_VS: String!,
+            ) : CadastroTipoVisitante! @create @guard
+
+  updateTipoVisitante(
+                INT_TP_VS: ID!,
+                DESC_TP_VS: String!,
+             
+            ) : CadastroTipoVisitante! @update @guard
+
+  upsertTipoVisitante(
+                INT_TP_VS: ID!,
+                DESC_TP_VS: String!,
+            ) : CadastroTipoVisitante! @upsert @guard
+}
+
+type CadastroTipoVisitante{
+  
+  INT_TP_VS: ID!,
+  DESC_TP_VS: String!,
+  
+}
+
+

@@ -1,0 +1,52 @@
+extend type Query{
+   standtemacurtidas(INT_STAND_CURT:ID @eq, INT_STAND: Int @where(operator: "="),INT_USU: Int @where(operator: "=")): [CadastroStandTemCurtida!]! @all 
+   standtemCurtida(INT_STAND_CURT: ID @eq ) : CadastroStandTemCurtida @find 
+}
+
+extend type Mutation{
+
+   #   deleteStandTemCurtida(INT_STAND_CURT: ID! @whereKey) : CadastroStandTemCurtida @delete @guard
+  deleteStandTemCurtida(INT_STAND: ID! @whereKey) : Deleted  @guard
+  
+  createStandTemCurtida(
+                          INT_STAND: Int!,
+                       ) : CadastroStandTemCurtida! @guard
+
+   
+
+#   createStandTemCurtida(
+#                           INT_STAND: Int!,
+#                           INT_USU: Int!,
+#                        ) : CadastroStandTemCurtida! @create @guard
+
+
+  updateStandTemCurtida(
+                          INT_STAND_CURT: ID!,
+                          INT_STAND: Int,
+                          INT_USU: Int!,
+                       ) : CadastroStandTemCurtida! @update @guard
+
+  upsertStandTemCurtida(
+                          INT_STAND_CURT: ID!,
+                          INT_STAND: Int!,
+                          INT_USU: Int!,
+                       ) : CadastroStandTemCurtida! @upsert @guard
+}
+
+type CadastroStandTemCurtida{
+  
+  INT_STAND_CURT: ID!
+  INT_STAND: Int!,
+  INT_USU  : Int!,
+}
+
+type Liked{
+   Liked: Boolean
+}
+
+type Deleted{
+   INT_STAND: Int!
+   success: Boolean
+}
+
+

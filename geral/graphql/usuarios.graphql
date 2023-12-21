@@ -1,0 +1,76 @@
+extend type Query{
+   usuarios(INT_USU:ID @eq, STR_EMAIL: String @where(operator: "like")): [User] @paginate @guard
+   usuario(INT_USU: ID @eq, STR_EMAIL: String @eq ) : User @find @guard
+   
+}
+
+extend type Mutation{
+  
+  passwordRecovery(STR_EMAIL: String!) : Recovery!
+  deleteUsuario(INT_STAND: ID! @whereKey) : User @delete @guard
+
+  createUsuario(
+              STR_EMAIL : String!,
+              SHA1_SENHA: String!,
+              STR_NM_USU: String,
+              CPF_USU   : String,
+              INT_EST   : Int,
+              INT_MUN   : Int,
+              LG_ATV    : String,
+              LG_SUPER  : String,
+              STR_TEL   : String
+             ) : User! #usando mutation personalizada
+
+
+  updateUsuario(
+                STR_EMAIL : String,
+                SHA1_SENHA: String,
+                STR_NM_USU: String,
+                LG_ATV    : String,
+                CPF_USU   : String,
+                INT_EST   : Int,
+                INT_MUN   : Int,
+                LG_SUPER  : String,
+                STR_TEL   : String
+              ) : User! @guard
+
+
+  upsertUsuario(
+                STR_EMAIL : String!,
+                SHA1_SENHA: String!,
+                CPF_USU   : String,
+                INT_EST   : Int,
+                INT_MUN   : Int,
+                LG_ATV    : String,
+                LG_SUPER  : String,
+                STR_TEL   : String,
+                STR_NM_USU: String,
+              ) : User! @upsert @guard
+}
+
+type User{
+  
+  INT_USU   : ID!,
+  STR_EMAIL : String!,
+  STR_NM_USU: String,
+  SHA1_SENHA: String!,
+  LG_ATV    : String,
+  LG_SUPER  : String,
+  CPF_USU   : String,
+  INT_EST   : Int,
+  INT_MUN   : Int,
+  STR_TEL   : String
+  FIRST_ACCESS : FirstAccess
+  
+}
+
+type Recovery{
+  MSG : String,
+  error: String
+}
+
+
+type FirstAccess{
+   FirstAccess: Boolean
+}
+

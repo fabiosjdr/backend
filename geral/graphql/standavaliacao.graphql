@@ -1,0 +1,55 @@
+extend type Query{
+   standtemavaliacoes(INT_STAND_AVAL:ID @eq, DESC_AVAL: String @where(operator: "like"), INT_STAND: Int @where(operator: "="),INT_USU: Int @where(operator: "=")): [CadastroStandTemAvaliacao!]! @all 
+   standtemavaliacao(INT_STAND_AVAL: ID @eq ) : CadastroStandTemAvaliacao @find 
+}
+
+extend type Mutation{
+
+  deleteStandTemAvaliacao(INT_STAND_AVAL: ID! @whereKey) : CadastroStandTemAvaliacao @delete @guard
+
+  createStandTemAvaliacao(
+                              INT_STAND: Int!,
+                              INT_USU: Int!,
+                              VR_AVAL: Float!,
+                              DESC_AVAL: String
+                            ) : CadastroStandTemAvaliacao! @create @guard
+
+
+  updateStandTemAvaliacao(
+                              INT_STAND_AVAL: ID!,
+                              INT_STAND: Int,
+                              INT_USU: Int!,
+                              VR_AVAL: Float,
+                              DESC_AVAL: String
+                            ) : CadastroStandTemAvaliacao! @update @guard
+
+
+  upsertStandTemAvaliacao(
+                              INT_STAND_AVAL: ID!,
+                              INT_STAND: Int!,
+                              INT_USU: Int!,
+                              VR_AVAL: Float!,
+                              DESC_AVAL: String
+                            ) : CadastroStandTemAvaliacao! @upsert @guard
+}
+
+type CadastroStandTemAvaliacao{
+  
+  INT_STAND_AVAL: ID!
+  INT_STAND: Int!,
+  INT_USU  : Int!,
+  VR_AVAL: Float,
+  DESC_AVAL: String,
+  USUARIO: User,
+  AVATAR : Avatar
+}
+
+type Media{
+  Media: Float
+}
+
+type Avatar{
+  STR_URL_ABSOLUTE: String
+}
+
+

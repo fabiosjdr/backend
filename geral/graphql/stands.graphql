@@ -1,0 +1,126 @@
+extend type Query{
+   
+   stands(
+          INT_STAND:ID @eq, 
+          STR_NM: String @where(operator: "like"),
+          hasPRODUTO : _ @whereHasConditions(columns: ["int_prod"]),
+          hasSEGMENTO: _ @whereHasConditions(columns: ["int_seg"]),
+          hasMATERIA_PRIMA: _ @whereHasConditions(columns: ["int_mat"]),
+          hasESTADO: _ @whereHasConditions(columns: ["int_est"]),
+          hasAREA: _ @whereHasConditions(columns: ["int_area"]),
+          hasSTAND: _ @whereHasConditions(columns: ["int_stand"]),
+          hasCONTROLE: _ @whereHasConditions(columns: ["str_cotr_int"]),
+          ): [CadastroStands] @paginate 
+          
+   stand(INT_STAND: ID @eq, STR_NM: String @eq ) : CadastroStands @find 
+}
+
+extend type Mutation{
+
+  deleteStand(INT_STAND: ID! @whereKey) : CadastroStands @delete @guard
+
+  createStand(
+              STR_NM: String!,
+              STR_NM: String,
+              STR_NM_FANT: String,
+              INT_PAG: Int,
+              INT_AREA:Int,
+              INT_MUN:Int,
+              INT_EST:Int,
+              STR_FACE:String,
+              STR_INST:String,
+              STR_WHAT:String,
+              STR_SITE:String,
+              STR_TEL:String,
+              STR_CEL:String,
+              STR_EMAIL:String,
+              DESC_TEXT:String,
+              DESC_PROD:String,
+              STR_COTR_INT:Int 
+              ) : CadastroStands! @create @guard
+
+
+  updateStand(
+                INT_STAND: ID!,
+                STR_NM: String,
+                STR_NM: String,
+                STR_NM_FANT: String,
+                INT_PAG: Int,
+                INT_AREA:Int,
+                INT_MUN:Int,
+                INT_EST:Int,
+                STR_FACE:String,
+                STR_INST:String,
+                STR_WHAT:String,
+                STR_SITE:String,
+                STR_TEL:String,
+                STR_CEL:String,
+                STR_EMAIL:String,
+                DESC_TEXT:String,
+                DESC_PROD:String,
+                STR_COTR_INT:Int 
+              ) : CadastroStands! @update @guard
+
+
+    upsertStand(
+                INT_STAND: ID!,
+                STR_NM: String!,
+                STR_NM: String,
+                STR_NM_FANT: String,
+                INT_PAG: Int,
+                INT_AREA:Int,
+                INT_MUN:Int,
+                INT_EST:Int,
+                STR_FACE:String,
+                STR_INST:String,
+                STR_WHAT:String,
+                STR_SITE:String,
+                STR_TEL:String,
+                STR_CEL:String,
+                STR_EMAIL:String,
+                DESC_TEXT:String,
+                DESC_PROD:String,
+                STR_COTR_INT:Int 
+              ) : CadastroStands! @upsert @guard
+}
+
+type CadastroStands{
+  
+  INT_STAND: ID
+  STR_NM: String,
+  STR_NM_FANT: String,
+  INT_PAG: Int,
+  INT_AREA:Int,
+  INT_MUN:Int,
+  INT_EST:Int,
+  STR_FACE:String,
+  STR_INST:String,
+  STR_WHAT:String,
+  STR_SITE:String,
+  STR_TEL:String,
+  STR_CEL:String,
+  STR_EMAIL:String,
+  DESC_TEXT:String,
+  DESC_PROD:String,
+  STR_RUA_MAP: String,
+  STR_NIV_MAP: String,
+  STR_NUM_CTRL : String,
+  AREA         : Area,
+  MATERIA_PRIMA: [CadastroStandTemMateriaPrima],
+  IMAGENS      : [CadastroStandTemImagem],
+  SEGMENTO     : [CadastroStandTemSegmento],
+  PRODUTO      : [CadastroStandTemProduto],
+  AVALIACAO    : [CadastroStandTemAvaliacao],
+  GALERIA      : [CadastroStandTemGaleria],
+  CURTIDA      : [CadastroStandTemCurtida],
+  CONTROLE     : [CadastroStandTemControle],
+  LIKED        : Liked,
+  ESTADO       : Estado,
+  MUNICIPIO    : Municipio,
+  MEDIA        : Media
+}
+
+type Area{
+  DESC_AREA: String
+}
+

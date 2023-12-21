@@ -1,0 +1,37 @@
+extend type Query{
+   segmentos(INT_SEG:ID @eq, DESC_SEG: String @where(operator: "like"),DESC_SEG_ENG: String @where(operator: "like")): [CadastroSegmentos] @all
+   segmento(INT_SEG: ID @eq, DESC_SEG: String @eq, DESC_SEG_ENG: String @eq ) : CadastroSegmentos @find 
+}
+
+extend type Mutation{
+
+  deleteSegmento(INT_SEG: ID! @whereKey) : User @delete @guard
+
+  createSegmento(
+                DESC_SEG: String!,
+                DESC_SEG_ENG: String,
+            ) : CadastroSegmentos! @create @guard
+
+  updateSegmento(
+                INT_SEG: ID!,
+                DESC_SEG: String,
+                DESC_SEG_ENG: String,
+             
+            ) : CadastroSegmentos! @update @guard
+
+  upsertSegmento(
+                INT_SEG: ID!,
+                DESC_SEG: String!,
+                DESC_SEG_ENG: String,
+            ) : CadastroSegmentos! @upsert @guard
+}
+
+type CadastroSegmentos{
+  
+  INT_SEG: ID!,
+  DESC_SEG: String!,
+  DESC_SEG_ENG: String,
+  
+}
+
+

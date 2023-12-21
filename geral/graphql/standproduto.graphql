@@ -1,0 +1,38 @@
+extend type Query{
+   standtemprodutos(INT_STAND_PROD:ID @eq, INT_PROD: Int @where(operator: "="), INT_STAND: Int @where(operator: "=")): [CadastroStandTemProduto!]! @all 
+   standtemproduto(INT_STAND_PROD: ID @eq ) : CadastroStandTemProduto @find 
+}
+
+extend type Mutation{
+
+  deleteStandTemProduto(INT_STAND_PROD: ID! @whereKey) : CadastroStandTemProduto @delete @guard
+
+  createStandTemProduto(
+                              INT_STAND: Int!,
+                              INT_PROD: Int!
+                            ) : CadastroStandTemProduto! @create @guard
+
+
+  updateStandTemProduto(
+                              INT_STAND_PROD: ID!,
+                              INT_STAND: Int,
+                              INT_PROD: Int
+                            ) : CadastroStandTemProduto! @update @guard
+
+
+  upsertStandTemProduto(
+                              INT_STAND_PROD: ID!,
+                              INT_STAND: Int!,
+                              INT_PROD: Int!,
+                            ) : CadastroStandTemProduto! @upsert @guard
+}
+
+type CadastroStandTemProduto{
+  
+  INT_STAND_PROD: ID!
+  INT_PROD: Int!,
+  INT_STAND: Int!
+ 
+}
+
+

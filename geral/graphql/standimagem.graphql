@@ -1,0 +1,49 @@
+extend type Query{
+   standtemimagens(INT_STAND_IMG:ID @eq, STR_URL: String @where(operator: "like"), INT_STAND: Int @where(operator: "="), STR_TP: String @where(operator: "like")): [CadastroStandTemImagem!]! @all 
+   standtemimagem(INT_STAND_IMG: ID @eq ) : CadastroStandTemImagem @find 
+}
+
+extend type Mutation{
+
+  deleteStandTemImagem(INT_STAND_IMG: ID! @whereKey) : CadastroStandTemImagem @delete @guard
+
+  createStandTemImagem(
+                          INT_STAND: Int!,
+                          STR_URL: String!,
+                          STR_URL_ABSOLUTE: String,
+                          STR_TP: String
+                        ) : CadastroStandTemImagem! @create @guard
+
+
+  updateStandTemImagem(
+                          INT_STAND_IMG: ID!,
+                          INT_STAND: Int,
+                          STR_URL: String,
+                          STR_URL_ABSOLUTE: String,
+                          STR_TP: String
+                        ) : CadastroStandTemImagem! @update @guard
+
+
+  upsertStandTemImagem(
+                          INT_STAND_IMG: ID!,
+                          INT_STAND: Int!,
+                          STR_URL: String!,
+                          STR_URL_ABSOLUTE: String,
+                          STR_TP: String
+                        ) : CadastroStandTemImagem! @upsert @guard
+}
+
+type CadastroStandTemImagem{
+  
+  INT_STAND_IMG: ID!
+  INT_STAND: Int!
+  STR_URL: String!,
+  STR_URL_ABSOLUTE: String,
+  STR_TP: String,
+  DOMAIN: Domain,
+}
+
+type Domain{
+   Domain: String
+}
+

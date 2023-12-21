@@ -1,0 +1,37 @@
+extend type Query{
+   produtos(INT_PROD:ID @eq, DESC_PROD: String @where(operator: "like"),DESC_PROD_ENG: String @where(operator: "like")): [CadastroProdutos] @all 
+   produto(INT_PROD: ID @eq, DESC_PROD: String @eq, DESC_PROD_ENG: String @eq ) : CadastroProdutos @find 
+}
+
+extend type Mutation{
+
+  deleteProduto(INT_PROD: ID! @whereKey) : User @delete @guard
+
+  createProduto(
+                DESC_PROD: String!,
+                DESC_PROD_ENG: String,
+            ) : CadastroProdutos! @create @guard
+
+  updateProduto(
+                INT_PROD: ID!,
+                DESC_PROD: String,
+                DESC_PROD_ENG: String,
+             
+            ) : CadastroProdutos! @update @guard
+
+  upsertProduto(
+                INT_PROD: ID!,
+                DESC_PROD: String!,
+                DESC_PROD_ENG: String,
+            ) : CadastroProdutos! @upsert @guard
+}
+
+type CadastroProdutos{
+  
+  INT_PROD: ID!,
+  DESC_PROD: String!,
+  DESC_PROD_ENG: String
+  
+}
+
+

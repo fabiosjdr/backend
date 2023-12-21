@@ -1,0 +1,19 @@
+{
+    "name": "fabio/bibliotecas",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.3",
+    "autoload": {
+        "psr-4": {
+            "Fabio\\Bibliotecas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fabio Ferraz",
+            "email": "fabio@sh3.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

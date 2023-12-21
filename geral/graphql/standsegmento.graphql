@@ -1,0 +1,38 @@
+extend type Query{
+   standtemsegmentos(INT_STAND_SEG:ID @eq, INT_SEG: Int @where(operator: "="), INT_STAND: Int @where(operator: "=")): [CadastroStandTemSegmento!]! @all 
+   standtemsegmento(INT_STAND_SEG: ID @eq ) : CadastroStandTemSegmento @find 
+}
+
+extend type Mutation{
+
+  deleteStandTemSegmento(INT_STAND: ID! @whereKey) : CadastroStandTemSegmento @delete @guard
+
+  createStandTemSegmento(
+                              INT_STAND: Int!,
+                              INT_PROD: Int!
+                            ) : CadastroStandTemSegmento! @create @guard
+
+
+  updateStandTemSegmento(
+                              INT_STAND_PROD: ID!,
+                              INT_STAND: Int,
+                              INT_PROD: Int
+                            ) : CadastroStandTemSegmento! @update @guard
+
+
+  upsertStandTemSegmento(
+                              INT_STAND_PROD: ID!,
+                              INT_STAND: Int!,
+                              INT_PROD: Int!,
+                            ) : CadastroStandTemSegmento! @upsert @guard
+}
+
+type CadastroStandTemSegmento{
+  
+  INT_STAND_SEG: ID!
+  INT_SEG: Int!,
+  INT_STAND: Int!
+  
+}
+
+

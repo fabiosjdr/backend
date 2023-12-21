@@ -1,0 +1,38 @@
+extend type Query{
+   standtemgalerias(INT_STAND_GAL:ID @eq, STR_URL: String @where(operator: "like"), INT_STAND: Int @where(operator: "=")): [CadastroStandTemImagem!]! @all
+   standtemgaleria(INT_STAND_GAL: ID @eq ) : CadastroStandTemImagem @find 
+}
+
+extend type Mutation{
+
+  deleteStandTemGaleria(INT_STAND_GAL: ID! @whereKey) : CadastroStandTemGaleria @delete @guard
+
+  createStandTemGaleria(
+                          INT_STAND: Int!,
+                          STR_URL: String!
+                        ) : CadastroStandTemGaleria! @create @guard
+
+
+  updateStandTemGaleria(
+                          INT_STAND_GAL: ID!,
+                          INT_STAND: Int,
+                          STR_URL: String,
+                        ) : CadastroStandTemGaleria! @update @guard
+
+
+  upsertStandTemGaleria(
+                          INT_STAND_GAL: ID!,
+                          INT_STAND: Int!,
+                          STR_URL: String!,
+                        ) : CadastroStandTemGaleria! @upsert @guard
+}
+
+type CadastroStandTemGaleria{
+  
+  INT_STAND_GAL: ID!
+  INT_STAND    : Int!
+  STR_URL      : String!
+  
+}
+
+

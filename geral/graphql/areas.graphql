@@ -1,0 +1,33 @@
+extend type Query{
+   areas(INT_AREA:ID @eq, DESC_AREA: String @where(operator: "like")): [CadastroAreas] @all 
+   area(INT_AREA: ID @eq, DESC_AREA: String @eq ) : CadastroAreas @find 
+}
+
+extend type Mutation{
+
+  deleteArea(INT_AREA: ID! @whereKey) : User @delete @guard
+
+  createArea(
+                DESC_AREA: String!,
+            ) : CadastroAreas! @create @guard
+
+  updateArea(
+                INT_AREA: ID!,
+                DESC_AREA: String!,
+             
+            ) : CadastroAreas! @update @guard
+
+  upsertArea(
+                INT_AREA: ID!,
+                DESC_AREA: String!,
+            ) : CadastroAreas! @upsert @guard
+}
+
+type CadastroAreas{
+  
+  INT_AREA: ID!,
+  DESC_AREA: String!,
+  
+}
+
+

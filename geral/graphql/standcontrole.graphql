@@ -1,0 +1,38 @@
+extend type Query{
+   standtemcontroles(INT_STAND_CTRL:ID @eq, STR_COTR_INT: String @where(operator: "LIKE"), INT_STAND: Int @where(operator: "=")): [CadastroStandTemControle!]! @all 
+   standtemcontrole(INT_STAND_CTRL: ID @eq,STR_COTR_INT: String @where(operator: "=") ) : CadastroStandTemControle @find 
+}
+
+extend type Mutation{
+
+  deleteStandTemControle(INT_STAND_CTRL: ID! @whereKey) : CadastroStandTemControle @delete @guard
+
+  createStandTemControle(
+                              INT_STAND: Int!,
+                              STR_COTR_INT: String!
+                            ) : CadastroStandTemControle! @create @guard
+
+
+  updateStandTemControle(
+                              INT_STAND_CTRL: ID!,
+                              INT_STAND: Int,
+                              STR_COTR_INT: String!
+                            ) : CadastroStandTemControle! @update @guard
+
+
+  upsertStandTemControle(
+                              INT_STAND_CTRL: ID!,
+                              INT_STAND: Int!,
+                              STR_COTR_INT: String!
+                            ) : CadastroStandTemControle! @upsert @guard
+}
+
+type CadastroStandTemControle{
+  
+  INT_STAND_CTRL: ID!
+  STR_COTR_INT: String!
+  INT_STAND: Int!
+  
+}
+
+

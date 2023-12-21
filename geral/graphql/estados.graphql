@@ -1,0 +1,15 @@
+extend type Query{
+   estados(INT_EST:ID @eq, NM_EST: String @where(operator: "like")): [Estado!]! @all 
+   estado(INT_EST: ID @eq, NM_EST: String @eq ) : Estado @find 
+}
+
+
+type Estado{
+  
+  INT_EST: ID!
+  STR_SIGLA: String!,
+  NM_EST: String!
+  
+}
+
+
